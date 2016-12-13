@@ -2,7 +2,7 @@ const THREE = require('THREE');
 const Colors = require('../colors.js');
 
 module.exports = function(){
-	var geom = new THREE.CylinderGeometry(650,600,100,40,10);
+	var geom = new THREE.CylinderGeometry(650,600,600,40,10);
 	geom.applyMatrix(new THREE.Matrix4().makeRotationX(-Math.PI/2));
 	geom.mergeVertices();
 	var l = geom.vertices.length;
@@ -19,13 +19,11 @@ module.exports = function(){
 										});
 	}
 	var mat = new THREE.MeshPhongMaterial({
-		color:Colors.blue,
+		color:Colors.green,
 		transparent:true,
-		opacity:0.8,
 		shading:THREE.FlatShading,
 	});
 
 	this.mesh = new THREE.Mesh(geom, mat);
 	this.mesh.receiveShadow = true;
-
 };
