@@ -5,6 +5,12 @@ const Sky = require('./objects/sky.js');
 const AnimationHandler = require('./animation_handler.js');
 const Colors = require('./colors.js');
 
+const ninetyaroundx = new THREE.Quaternion();
+ninetyaroundx.setFromAxisAngle(new THREE.Vector3(1, 0, 0), - Math.PI / 2);
+
+const ninetyaroundz = new THREE.Quaternion();
+ninetyaroundz.setFromAxisAngle(new THREE.Vector3(0, 0, 1), - Math.PI / 2);
+
 function appendLights(scene) {
 	const hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, 0.9);
 
@@ -139,7 +145,7 @@ module.exports = function Scene() {
   self._cameraL.rotation.set(
     0,
     0,
-    0.5 * (Math.PI),
+    0.5 * (Math.PI)
   );
 
   self._cameraR = new THREE.PerspectiveCamera(
@@ -156,7 +162,7 @@ module.exports = function Scene() {
   self._cameraR.rotation.set(
     0,
     0,
-    0.5 * (Math.PI),
+    0.5 * (Math.PI)
   );
 
   self._camera_rig.add(self._cameraL);
@@ -193,13 +199,15 @@ module.exports = function Scene() {
   	self._WIDTH = window.innerWidth;
   	self._renderer.setSize(self._WIDTH, self._HEIGHT);
 
-    self._cameraL.aspect = self._WIDTH / self._HEIGHT;
+    // NOTE: L & R only have half the aspect ratio b/c they have half the height (for stereoscopic viewing)
+
+    self._cameraL.aspect = self._WIDTH / (self._HEIGHT / 2);
   	self._cameraL.updateProjectionMatrix();
 
   	self._cameraM.aspect = self._WIDTH / self._HEIGHT;
   	self._cameraM.updateProjectionMatrix();
 
-    self._cameraR.aspect = self._WIDTH / self._HEIGHT;
+    self._cameraR.aspect = self._WIDTH / (self._HEIGHT / 2);
   	self._cameraR.updateProjectionMatrix();
   };
 
@@ -231,12 +239,29 @@ module.exports = function Scene() {
     let normalized_x, normalized_y, normalized_z;
 
     if (self._vr) {
-      // normalized_x = self._gyro_x / 180;
-      // normalized_y = self._gyro_y / 90;
-      // normalized_z = self._gyro_z / 360;
-      normalized_x = 0;
-      normalized_y = 0;
-      normalized_z = 0;
+      // NOTE: euler.set(x, y, z, order)
+      // The angles alpha, beta and gamma
+      // form a set of intrinsic Tait-Bryan angles of type Z-X'-Y''
+      // 'ZXY' for the device, but 'YXZ' for us
+      // the reason we flip Z and Y is because the phone's coordiante system
+      // is oriented with the phone facing down, while THREEjs has a coord system
+      // facing sideways (y and z axis are flipped)...
+      // to fix this we just swap the y and z axis (both in how we pass them
+      // and the order we interpret them in), then we negate z so that it makes sense
+      // (b/c by just simply swapping y/z, positive y in phone coords, should be negative z in threejs coords)
+      const euler = new THREE.Euler(this._gyro_beta, this._gyro_alpha, -1 * this._gyro_gamma, 'YXZ');
+      const quat = new THREE.Quaternion();
+      quat.setFromEuler(euler);
+      // camera looks out the back of the device, not the top, so rotate to counter effect
+      quat.multiply(ninetyaroundx);
+      // phone locked in portrait, but in landscape, so counter rotate
+      quat.multiply(ninetyaroundz);
+
+      // TO SET DIRECTLY:
+      // self._camera_rig.rotation.setFromQuaternion(quat);
+
+      // TO SLERP (will cause smoothing effect and reduce jitter):
+      self._camera_rig.quaternion.slerp(quat, 0.5);
     } else {
       // flipped b/c x movement means we rotate aroudn y axis
       normalized_y = (self._mouse_x - (self._WIDTH / 2)) / (self._WIDTH / 2);
@@ -246,14 +271,13 @@ module.exports = function Scene() {
       // dampen
       normalized_x = normalized_x / 4;
       normalized_y = normalized_y / 4;
-    }
 
-    // update -- using mouse
-    self._camera_rig.rotation.set(
-      -1 * normalized_x * (Math.PI / 2),
-      -1 * normalized_y * (Math.PI),
-      normalized_z * (Math.PI),
-    );
+      self._camera_rig.rotation.set(
+        -1 * normalized_x * (Math.PI / 2),
+        -1 * normalized_y * (Math.PI),
+        normalized_z * (Math.PI)
+      );
+    }
   };
 
   self.onMouseMove = function (e) {
@@ -264,13 +288,13 @@ module.exports = function Scene() {
 
   self.onGyroMove = function (e) {
     // grab the data
-    self._gyro_beta = e.beta;
-    self._gyro_gamma = e.gamma;
-    self._gyro_alpha = e.alpha;
+    self._gyro_beta = THREE.Math.degToRad(e.beta);
+    self._gyro_gamma = THREE.Math.degToRad(e.gamma);
+    self._gyro_alpha = THREE.Math.degToRad(e.alpha);
   };
 
   self.onPress = function () {
-    console.log("Canvas pressed.");
+    console.log('Canvas pressed.');
   };
 
   self.onVRToggle = function () {
