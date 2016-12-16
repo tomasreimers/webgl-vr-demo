@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const THREE = require('THREE');
 const AirPlane = require('./objects/airplane.js');
 const Sea = require('./objects/sea.js');

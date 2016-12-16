@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 module.exports = function () {
   const self = this;
 
@@ -8,7 +10,7 @@ module.exports = function () {
 
   self.togglePause = function () {
     self._pause = !self._pause;
-  }
+  };
 
   self.add = function (callback) {
     self._callbacks.push(callback);
@@ -27,5 +29,5 @@ module.exports = function () {
       self._last_updated = Date.now();
       self._update();
     }
-  }
-}
+  };
+};

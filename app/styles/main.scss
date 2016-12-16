@@ -5,17 +5,37 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-size: 0;
   font-family: sans-serif;
 }
 
 #toggle-vr {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
+    right: 20px;
+}
+
+#about {
+    left: 20px;
+}
+
+#demo {
+  position: relative;;
+  bottom: 20px;
   background: #000;
   color: #FFF;
-  opacity: 0.1;
+  font-size: 20;
+  border-radius: 2px;
+  padding: 10px;
+  opacity: 0.5;
+  transition: opacity 1s;
+  text-decoration: none;
+  user-select: none;
+}
+
+#toggle-vr, #about {
+  position: fixed;
+  bottom: 20px;
+  background: #000;
+  color: #FFF;
+  opacity: 0.2;
   font-size: 10px;
   border-radius: 2px;
   padding: 10px;
@@ -24,6 +44,6 @@ body {
   user-select: none;
 }
 
-#toggle-vr:hover {
+#toggle-vr:hover, #about:hover, #demo:hover {
   opacity: 0.8;
 }

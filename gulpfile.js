@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 // generated on 2016-12-12 using generator-webapp 2.1.0
 const gulp = require('gulp');
 const gulpLoadPlugins = require('gulp-load-plugins');

@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const THREE = require('THREE');
 const Scene = require('./scene.js');
 
