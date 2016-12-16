@@ -294,7 +294,7 @@ module.exports = function Scene() {
   };
 
   self.onPress = function () {
-    console.log('Canvas pressed.');
+    self.animation_handler.togglePause();
   };
 
   self.onVRToggle = function () {

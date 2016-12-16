@@ -4,12 +4,19 @@ module.exports = function () {
   self._callbacks = [];
   self._last_updated = Date.now();
   self._fps = 60;
+  self._pause = false;
+
+  self.togglePause = function () {
+    self._pause = !self._pause;
+  }
 
   self.add = function (callback) {
     self._callbacks.push(callback);
   };
 
   self._update = function () {
+    if (self._pause) { return; }
+
     for (var i = 0; i < self._callbacks.length; i++) {
       self._callbacks[i]();
     }
