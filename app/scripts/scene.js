@@ -92,6 +92,7 @@ function appendAirplane(scene){
 	airplane.mesh.position.z += Math.cos(airplane.propeller.rotation.x / 5);
 	airplane.mesh.position.x += Math.sin(airplane.propeller.rotation.x / 7);
 	airplane.mesh.position.y += Math.cos(airplane.propeller.rotation.x / 10);
+	airplane.mesh.rotation.x += Math.cos(airplane.propeller.rotation.x / 10) / 100;
   });
 }
 
