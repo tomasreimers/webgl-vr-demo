@@ -84,10 +84,14 @@ function appendAirplane(scene){
 	const airplane = new AirPlane();
 	airplane.mesh.scale.set(0.25,0.25,0.25);
 	airplane.mesh.position.y = 100;
+	airplane.mesh.position.x = -25;
 	airplane.mesh.position.z = 75;
 	scene.add(airplane.mesh);
   scene.animation_handler.add(function () {
     airplane.propeller.rotation.x += 0.3;
+	airplane.mesh.position.z += Math.cos(airplane.propeller.rotation.x / 5);
+	airplane.mesh.position.x += Math.sin(airplane.propeller.rotation.x / 7);
+	airplane.mesh.position.y += Math.cos(airplane.propeller.rotation.x / 10);
   });
 }
 
