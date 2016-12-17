@@ -86,14 +86,40 @@
 
     <h2>Rendering a scene in 3D</h2>
     <p>
+        To create our beautiful plane flying in all its 3D glory, we create a
+        Scene object from Three.js and append it to the DOM. In the creation of
+        a scene object, we add in lights, dynamically generated clouds, a
+        randomly shifting cylindrical ground, and of course, a small propeller
+        plane. We found the low poly art style to be both appealing and
+        feasible to create purly with code. The ambient and hemosphere light
+        work to fade colors from the sky into the objects around the scene.
     </p>
 
     <h2>Adding ego-motion using the mouse</h2>
     <p>
+        We wanted to give a dynamic interacitvity to our scene. To do this, we
+        connected the javascript callback for mouse movements to our camera
+        object in the scene. When the user moves the mouse towards the edges of
+        the screen, the camera pans in ego motion in the same direction. This
+        gives the user the sense of presense and exploration as the curiously
+        look around the scene.
     </p>
 
     <h2>Rendering for VR</h2>
     <p>
+        Ego motion on a laptop is nice, but we wanted to push ourselves to
+        create a stereoscopic, motion tracking experience using Google Cardboard
+        devices. If you load the webpage on your phone, toggle VR, and place
+        the phone into a VR viewer, you can look around our small world and
+        the buzzing plane. Rather than using a single camera, we construct a
+        digital camera rig complete with a perspective center camera, a left
+        perspective camera, and a right perspective camera. When the user
+        toggles VR, we switch from showing the view from the center camera,
+        to showing a split screen with each of the two side cameras. When update
+        camera is called from the runtime loop, we check the gyroscope position
+        of the phone, and point the cameras appropriately. To prevent gitter, we
+        use smooth linear interpolation rather than just setting the camera rig
+        position directly.
     </p>
 
     <h2>Quick Performance Benchmarks</h2>
