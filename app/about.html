@@ -38,13 +38,13 @@
     combined with gyroscope informed camera motion) has become increasingly
     popular over the past couple of years. This has been marked by an increase
     in 3D content, a proliferation of headsets, and public attention to the
-    field from many big-name players, such as Playstation, NVidia, and Google.
+    field from many big-name players, such as PlayStation, NVidia, and Google.
     One specific area of exploration has been VR on the web -- the reasoning
     being that it would be platform-independent and sandboxed using
     already-existing technologies. For example, see <a
     href="https://developer.oculus.com/blog/introducing-the-react-vr-pre-release/">Oculus’
     pre-release of ReactVR</a> a framework to build VR for the web. We wanted to
-    explore this, and demo how WebGL could be used to create immerse VR
+    explore this and demo how WebGL could be used to create immerse VR
     experiences on the web.  </p>
 
     <h2>Background on Google Cardboard</h2>
@@ -53,7 +53,7 @@
         at Google in 2014. The device, made from a cardboard box and two lenses,
         allows anyone with a smartphone to experience virtual reality. The idea
         was born when an engineer realized that the expensive components
-        required for virtual reality - a computer, high resolution display,
+        required for virtual reality - a computer, high-resolution display,
         and motion sensors - all already existed on everyone's day-to-day
         smartphones. Since its creation, an estimated 5 million units have
         been shipped.
@@ -61,14 +61,14 @@
 
     <h2>Background on WebGL</h2>
     <p>
-        In the world's endevor to make Javascript do everything it was never
+        In the world's endeavor to make Javascript do everything it was never
         meant to do, WebGL was born. It is a Javascript API for rendering
         3D graphics on modern web browsers without the assistance of plugins.
         Beyond near universal support, WebGL is wonderful because it is able
         to utilize a computer's GPU while calculating what to render on screen,
         giving it much higher performance than otherwise possible. This is a
         must when considering programming for Virtual Reality, because two
-        view points must be rendered simultaniously at a high framerate to
+        view points must be rendered simultaneously at a high framerate to
         generate a convincing experience.
     </p>
 
@@ -80,8 +80,8 @@
         wrappers is <a href="https://threejs.org/">Three.js</a>. Three JS
         creates powerful classes such as Scenes, Renders, Cameras, Geometries,
         Materials, and Meshes. These classes abstract away some of the less
-        pleasent aspects of 3D programmign and allow users to focus on the
-        arangement and phyics of their scene.
+        pleasant aspects of 3D programming and allow users to focus on the
+        arrangement and physics of their scene.
     </p>
 
     <h2>Rendering a scene in 3D</h2>
@@ -91,25 +91,25 @@
         a scene object, we add in lights, dynamically generated clouds, a
         randomly shifting cylindrical ground, and of course, a small propeller
         plane. We found the low poly art style to be both appealing and
-        feasible to create purly with code. The ambient and hemosphere light
+        feasible to create purely with code. The ambient and hemisphere light
         work to fade colors from the sky into the objects around the scene.
     </p>
 
     <h2>Adding ego-motion using the mouse</h2>
     <p>
-        We wanted to give a dynamic interacitvity to our scene. To do this, we
+        We wanted to give a dynamic interactivity to our scene. To do this, we
         connected the javascript callback for mouse movements to our camera
         object in the scene. When the user moves the mouse towards the edges of
         the screen, the camera pans in ego motion in the same direction. This
-        gives the user the sense of presense and exploration as the curiously
+        gives the user the sense of presence and exploration as the curiously
         look around the scene.
     </p>
 
     <h2>Rendering for VR</h2>
     <p>
-        Ego motion on a laptop is nice, but we wanted to push ourselves to
+        Ego-motion on a laptop is nice, but we wanted to push ourselves to
         create a stereoscopic, motion tracking experience using Google Cardboard
-        devices. If you load the webpage on your phone, toggle VR, and place
+        devices. If you load the web page on your phone, toggle VR, and place
         the phone into a VR viewer, you can look around our small world and
         the buzzing plane. Rather than using a single camera, we construct a
         digital camera rig complete with a perspective center camera, a left
@@ -117,13 +117,14 @@
         toggles VR, we switch from showing the view from the center camera,
         to showing a split screen with each of the two side cameras. When update
         camera is called from the runtime loop, we check the gyroscope position
-        of the phone, and point the cameras appropriately. To prevent gitter, we
+        of the phone, and point the cameras appropriately. To prevent jitter, we
         use smooth linear interpolation rather than just setting the camera rig
         position directly.
     </p>
 
     <h2>Quick Performance Benchmarks</h2>
     <p>
+
     </p>
 
     <h2>Effects of changing eye distance and angles</h2>
