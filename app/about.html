@@ -152,13 +152,6 @@
         the user moved their head while we were trying to render a VR scene). For
         this reason, we needed to render the camera scenes rotated 90 degrees.
     </p>
-    <p>
-        When update
-        camera is called from the runtime loop, we check the gyroscope position
-        of the phone, and point the cameras appropriately. To prevent jitter, we
-        use smooth linear interpolation rather than just setting the camera rig
-        position directly.
-    </p>
     <div class="video-div">
         <img height="300" src="images/plane_vr.png" type="image/png">
     </div>
@@ -168,10 +161,13 @@
         Having stereoscopic view, we wanted to permit the user to move their head
         and have that linked to camera movement. To do that we use the device
         orientation API that gives you the rotation of the phone in 3D space.
-
-
+    </p>
+    <div class="video-div">
+        <img width="200" src="https://www.w3.org/TR/2016/CR-orientation-event-20160818/start.png" />
+    </div>
+    <p>
         The rotation is given in Tait-Bryan Euler (LINK THIS) angles of type Z-X'-Y'';
-        however the Y and Z coordinate are inverted between our world and the phone's world.
+        however, the Y and Z coordinate are inverted between our world and the phone's world.
         To correct for this we swap the Y and Z coordinates (and then stay right hand oriented,
         we need to invert the Z rotation).
 
@@ -179,8 +175,6 @@
         and then 90 degrees about Z (because portrait, not landscape by default), and then we just bind the
         phone rotation to the camera rig.
     </p>
-
-    <img width="200" src="https://www.w3.org/TR/2016/CR-orientation-event-20160818/start.png" />
 
     <h2>Effects of changing eye distance and angles</h2>
     <p>
