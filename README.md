@@ -12,7 +12,7 @@ $ npm install
 $ gulp serve
 ~~~
 
-**NOTE: We have also gone ahead and hosted a version [here](https://tomasreimers.github.io/webgl-vr-demo/).**
+*NOTE: We have also gone ahead and hosted a version [here](https://tomasreimers.github.io/webgl-vr-demo/).*
 
 ## Use
 When you open the webpage in a webbrowser (`index.html`), there will be three buttons at the bottom right of the app.
