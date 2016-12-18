@@ -40,18 +40,20 @@
     </center>
 
     <h2>Impetus</h2>
-    <p>  Virtual Reality (stereoscopic viewing through a specific headset,
-    combined with gyroscope informed camera motion) has become increasingly
-    popular over the past couple of years. This has been marked by an increase
-    in 3D content, a proliferation of headsets, and public attention to the
-    field from many big-name players, such as PlayStation, NVidia, and Google.
-    One specific area of exploration has been VR on the web -- the reasoning
-    being that it would be platform-independent and sandboxed using
-    already-existing technologies. For example, see <a
-    href="https://developer.oculus.com/blog/introducing-the-react-vr-pre-release/">Oculus’
-    pre-release of ReactVR</a> a framework to build VR for the web. We wanted to
-    explore this and demo how WebGL could be used to create immerse VR
-    experiences on the web.  </p>
+    <p>
+        Virtual Reality (stereoscopic viewing through a specific headset,
+        combined with gyroscope informed camera motion) has become increasingly
+        popular over the past couple of years. This has been marked by an increase
+        in 3D content, a proliferation of headsets, and public attention to the
+        field from many big-name players, such as PlayStation, NVidia, and Google.
+        One specific area of exploration has been VR on the web -- the reasoning
+        being that it would be platform-independent and sandboxed using
+        already-existing technologies. For example, see <a
+        href="https://developer.oculus.com/blog/introducing-the-react-vr-pre-release/">Oculus’
+        pre-release of ReactVR</a> a framework to build VR for the web. We wanted to
+        explore this and demo how WebGL could be used to create immerse VR
+        experiences on the web.
+    </p>
 
     <h2>Background on Google Cardboard</h2>
     <p>
@@ -100,6 +102,13 @@
         feasible to create purely with code. The ambient and hemisphere light
         work to fade colors from the sky into the objects around the scene.
     </p>
+    <div class="video-div">
+        <video width="320" height="240" autoplay loop>
+            <source src="images/plane.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
 
     <h2>Adding ego-motion using the mouse</h2>
     <p>
@@ -110,6 +119,12 @@
         gives the user the sense of presence and exploration as the curiously
         look around the scene.
     </p>
+    <div class="video-div">
+        <video width="320" height="240" autoplay loop>
+            <source src="images/plane_move_mouse.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
     <h2>Rendering for VR</h2>
     <p>
@@ -148,6 +163,9 @@
         use smooth linear interpolation rather than just setting the camera rig
         position directly.
     </p>
+    <div class="video-div">
+        <img height="300" src="images/plane_vr.png" type="image/png">
+    </div>
 
     <h2>Quick Performance Benchmarks</h2>
     <p>
