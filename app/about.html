@@ -152,6 +152,13 @@
         the user moved their head while we were trying to render a VR scene). For
         this reason, we needed to render the camera scenes rotated 90 degrees.
     </p>
+    <p>
+        When update
+        camera is called from the runtime loop, we check the gyroscope position
+        of the phone, and point the cameras appropriately. To prevent jitter, we
+        use smooth linear interpolation rather than just setting the camera rig
+        position directly.
+    </p>
     <div class="video-div">
         <img height="300" src="images/plane_vr.png" type="image/png">
     </div>
