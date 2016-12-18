@@ -117,7 +117,28 @@
         create a stereoscopic, motion tracking experience using Google Cardboard
         devices. If you load the web page on your phone, toggle VR, and place
         the phone into a VR viewer, you can look around our small world and
-        the buzzing plane. Rather than using a single camera, we construct a
+        the buzzing plane.
+    </p>
+    </p>
+        In order to make a stereoscopic view, we would need to have 2 views that
+        were facing the same direction and kept and a constant distance. Rather than
+        have our code update two cameras, we choose to create a "camera_rig" object
+        and attach our two cameras to it at a fixed distance, we then updated the
+        code to change the rotation of the camera_rig object, instead of the camera
+        object (which would inherit the changes because it's a child of the rig).
+    </p>
+    <p class="note">
+        NOTE: We also had to update the aspect ratio to have a heigth of half of
+        the full screen.
+    </p>
+    </p>
+        We are forcing our users to lock their phone in portrait mode (because it
+        would be incredibly inconvenient if orientation was switching because
+        the user moved their head while we were trying to render a VR scene). For
+        this reason, we needed to render the camera scenes rotated 90 degrees. 
+    </p>
+    <p>
+        Rather than using a single camera, we construct a
         digital camera rig complete with a perspective center camera, a left
         perspective camera, and a right perspective camera. When the user
         toggles VR, we switch from showing the view from the center camera,
@@ -135,6 +156,7 @@
 
     <h2>Effects of changing eye distance and angles</h2>
     <p>
+
     </p>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

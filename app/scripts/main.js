@@ -39,8 +39,11 @@ function init() {
   // stage.addEventListener('touchend', scene.onPress, false);
 
   // watch for VR toggle
-  const toggleButton = document.getElementById('toggle-vr');
-  toggleButton.addEventListener('click', scene.onVRToggle, false);
+  const toggleVRButton = document.getElementById('toggle-vr');
+  toggleVRButton.addEventListener('click', scene.onVRToggle, false);
+
+  const toggleFixButton = document.getElementById('toggle-fix');
+  toggleFixButton.addEventListener('click', scene.onFixToggle, false);
   // toggleButton.addEventListener('touchend', scene.onVRToggle, false);
 
   // begin the animation loop

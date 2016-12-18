@@ -8,32 +8,13 @@ body {
   font-family: sans-serif;
 }
 
-#toggle-vr {
-    right: 20px;
-}
-
-#about {
-    left: 20px;
-}
-
-#demo {
-  position: relative;
-  bottom: 20px;
-  background: #000;
-  color: #FFF;
-  font-size: 20;
-  border-radius: 2px;
-  padding: 10px;
-  opacity: 0.5;
-  transition: opacity 1s;
-  text-decoration: none;
-  user-select: none;
-  display: inline-block;
-}
-
-#toggle-vr, #about {
+.options {
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
+  right: 10px;
+}
+
+#toggle-vr, #toggle-fix, #about, #demo {
   background: #000;
   color: #FFF;
   opacity: 0.2;
@@ -43,8 +24,9 @@ body {
   transition: opacity 1s;
   text-decoration: none;
   user-select: none;
+  display: inline-block;
 }
 
-#toggle-vr:hover, #about:hover, #demo:hover {
+#toggle-vr:hover, #toggle-fix:hover, #about:hover, #demo:hover {
   opacity: 0.8;
 }
