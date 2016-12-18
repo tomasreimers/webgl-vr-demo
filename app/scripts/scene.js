@@ -13,6 +13,8 @@ ninetyaroundx.setFromAxisAngle(new THREE.Vector3(1, 0, 0), - Math.PI / 2);
 const ninetyaroundz = new THREE.Quaternion();
 ninetyaroundz.setFromAxisAngle(new THREE.Vector3(0, 0, 1), - Math.PI / 2);
 
+const EYE_DISTANCE = 20;
+
 function appendLights(scene) {
 	const hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, 0.9);
 
@@ -144,7 +146,7 @@ module.exports = function Scene() {
     farPlane
   );
 
-  self._cameraL.position.x = -10;
+  self._cameraL.position.x = -1 * (EYE_DISTANCE / 2);
   self._cameraL.position.z = 0;
   self._cameraL.position.y = 0;
 
@@ -162,7 +164,7 @@ module.exports = function Scene() {
     farPlane
   );
 
-  self._cameraR.position.x = 10;
+  self._cameraR.position.x = (EYE_DISTANCE / 2);
   self._cameraR.position.z = 0;
   self._cameraR.position.y = 0;
 
@@ -195,6 +197,7 @@ module.exports = function Scene() {
   self._gyro_gamma = 0;
 
   self._vr = false;
+  self._fix = false;
 
   // methods and callbacks
   self.getDomElement = function () {
@@ -244,6 +247,15 @@ module.exports = function Scene() {
 
   self.updateCamera = function () {
     let normalized_x, normalized_y, normalized_z;
+
+    if (self._fix) {
+      self._camera_rig.rotation.set(
+        0,
+        0,
+        0
+      );
+      return;
+    }
 
     if (self._vr) {
       // NOTE: euler.set(x, y, z, order)
@@ -313,6 +325,10 @@ module.exports = function Scene() {
         document.documentElement.requestFullscreen();
       }
     }
+  };
+
+  self.onFixToggle = function () {
+    self._fix = !self._fix;
   };
 
   // initalize the objects
