@@ -20,8 +20,14 @@ p {
 
 .video-div {
     text-align: center;
+    margin: 20px 0;
 }
 
 .note {
     font-style: italic;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
 }

@@ -24,6 +24,17 @@ details behind it.
 
 3. VR: Enables stereoscopic viewing for mobile VR viewing.
 
+## Code
+
+Our code can be found in the `app/` directory. The most relevant Javascript files
+are in `app/scripts/` and are:
+
+ - `main.js`: Constructs a Scene and binds event handlers to it.
+ - `scene.js`: The bulk of our animation code, adds objects to the scene graph,
+               handles user interaction, and moves the cameras.
+ - `animation_handler.js`: Responsible for moving forward the animation loop
+ - `objects/*.js`: constructors for all the objects we put on the screen
+
 ## Authors
 (C) Fall 2016
 Tomas Reimers & Greg M Foster
