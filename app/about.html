@@ -119,9 +119,12 @@
         We wanted our users to be able to look around our 3D-rendered scene. To
         do this, we connected mouse movements around the screen to rotate the camera
         towards that direction. When the user moves the mouse towards the edges
-        of the screen, the camera pans in ego motion in the same direction. This
-        gives the user the sense of presence and exploration as the curiously
-        look around the scene.
+        of the screen, the camera pans in ego motion in the same direction.
+        We had x movement of the mouse rotate around the y axis, and y movement
+        rotate the camera around the x axis. We took the x/y value, normalized the
+        value to between -1 and 1, and then multiply it by the maximum rotation
+        we wanted the user to be able to see for that axis. This gives the user
+        the sense of presence and exploration as they curiously look around the scene.
     </p>
 
     <div class="video-div">
@@ -134,31 +137,40 @@
     <h2>Rendering for VR</h2>
     <p>
         Ego-motion on a laptop is nice, but we wanted to push ourselves to
-        create a stereoscopic, motion tracking experience using Google Cardboard
-        devices. If you load the web page on your phone, toggle VR, and place
-        the phone into a VR viewer, you can look around our small world and
-        the buzzing plane.
+        create a stereoscopic, motion-tracking experience for Google Cardboard.
+        If you load the web page on your phone, toggle VR (using the button in the
+        bottom right), and place the phone into a Google cardboard VR viewer,
+        you can look around our small world with a buzzing plane.
     </p>
+    <div class="video-div">
+        <img width="200" src="https://lh3.googleusercontent.com/PUoxFz1ShIvkTWu8HFqdgCqlhBSIXOPT08dNWWgkPZD3SL7JVA9SbgKO8v04aqOShQ" />
+    </div>
     </p>
         In order to make a stereoscopic view, we would need to have 2 views that
-        were facing the same direction and kept and a constant distance. Rather than
+        were facing the same direction and kept at a constant distance. Rather than
         have our code update two cameras, we choose to create a "camera_rig" object
-        and attach our two cameras to it at a fixed distance, we then updated the
-        code to change the rotation of the camera_rig object, instead of the camera
-        object (which would inherit the changes because it's a child of the rig).
+        and attach our two cameras to it at a fixed distance on the camera_rig's x-axis,
+        we then updated the code to change the rotation of the camera_rig object,
+        instead of the camera object (which would inherit the changes because it's
+        a child of the rig).
     </p>
     <p class="note">
-        NOTE: We also had to update the aspect ratio to have a heigth of half of
+        NOTE: We also had to update the aspect ratio to have half the height of
         the full screen.
-    </p>
-    </p>
-        We are forcing our users to lock their phone in portrait mode (because it
-        would be incredibly inconvenient if orientation was switching because
-        the user moved their head while we were trying to render a VR scene). For
-        this reason, we needed to render the camera scenes rotated 90 degrees.
     </p>
     <div class="video-div">
         <img height="300" src="images/plane_vr.png" type="image/png">
+    </div>
+    <p>
+        We are forcing our users to lock their phone in portrait mode (because it
+        would be incredibly inconvenient if orientation was switching because
+        the user moved their head while we were trying to render a VR scene). For
+        this reason, we needed to render the scenes rotated 90 degrees; to do
+        this, we rotated the cameras, which cause the stereoscopic view to appear
+        sideways in portrait mode.
+    </p>
+    <div class="video-div">
+        <img height="300" src="images/plane_vr_side.png" type="image/png">
     </div>
 
     <h2>Using the device orientation API to allow head-movement</h2>
@@ -185,12 +197,12 @@
     <h2>Effects of changing eye distance and angles</h2>
     <p>
         Because we could, we experimented with the horizontal distance between
-        the left and right perspective cameras. We notices that when the
-        distance between them is 0, the world looks flat as expected. As we
+        the left and right eye cameras. We notices that when the
+        distance between them is 0, the world looks flat -- as expected. As we
         increased the distance between the two cameras, the world becomes more
         and more 3D. At a certain point, the distance becomes so large that
         you brain recognizes that they are two different images and your
-        vision becomes a muddled mess.
+        vision becomes a mess.
     </p>
 
     <h2>Resources Used</h2>
