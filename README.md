@@ -24,6 +24,9 @@ details behind it.
 
 3. VR: Enables stereoscopic viewing for mobile VR viewing.
 
+Additionally, tapping the screen (or pressing the button on a Google VR headset,
+will pause the animation).
+
 ## Code
 
 Our code can be found in the `app/` directory. The most relevant Javascript files

@@ -178,8 +178,8 @@
       <h2>Using the device orientation API to allow head-movement</h2>
       <p>
           Having stereoscopic view, we wanted to permit the user to move their head
-          and have that linked to camera movement. To do that we use the device
-          orientation API that gives the developer the rotation of the phone in 3D space.
+          and have that linked to camera movement. To do that we use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Detecting_device_orientation">device
+          orientation API</a> that gives the developer the rotation of the phone in 3D space.
       </p>
       <div class="video-div">
           <img width="200" src="https://www.w3.org/TR/2016/CR-orientation-event-20160818/start.png" />
@@ -195,7 +195,9 @@
           Lastly, we take the rotation and rotate it 90 degrees about the X axis (b/c phone faces down by default),
           and then 90 degrees about Z (because portrait, not landscape by default), so that the resting position
           (rotation of 0,0,0) is sideways and horizontal. Then we just bind the phone rotation to the camera rig,
-          so that any motion that moves it from the resting position is captured.
+          so that any motion that moves it from the resting position is captured. We do this by slerping to half
+          way between the current view and the "correct view" (as determined by the orientation). We find the slerp
+          helps remove jitter.
       </p>
 
       <h2>Effects of changing eye distance and angles</h2>
