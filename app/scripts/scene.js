@@ -2,7 +2,7 @@
 
 const THREE = require('THREE');
 const AirPlane = require('./objects/airplane.js');
-const Sea = require('./objects/sea.js');
+const Land = require('./objects/land.js');
 const Sky = require('./objects/sky.js');
 const AnimationHandler = require('./animation_handler.js');
 const Colors = require('./colors.js');
@@ -37,22 +37,22 @@ function appendLights(scene) {
 	scene.add(shadowLight);
 }
 
-function appendSea(scene){
-	const sea = new Sea();
-	sea.mesh.position.y = -600;
-	scene.add(sea.mesh);
+function appendLand(scene){
+	const land = new Land();
+	land.mesh.position.y = -600;
+	scene.add(land.mesh);
 
   scene.animation_handler.add(function () {
     // move waves
     // get the vertices
-  	var verts = sea.mesh.geometry.vertices;
+  	var verts = land.mesh.geometry.vertices;
   	var l = verts.length;
 
   	for (var i=0; i<l; i++){
   		var v = verts[i];
 
   		// get the data associated to it
-  		var vprops = sea.waves[i];
+  		var vprops = land.waves[i];
 
   		// update the position of the vertex
   		v.x = vprops.x + Math.cos(vprops.ang)*vprops.amp;
@@ -63,13 +63,13 @@ function appendSea(scene){
 
   	}
 
-  	// Tell the renderer that the geometry of the sea has changed.
+  	// Tell the renderer that the geometry of the land has changed.
   	// In fact, in order to maintain the best level of performance,
   	// three.js caches the geometries and ignores any changes
   	// unless we add this line
-  	sea.mesh.geometry.verticesNeedUpdate=true;
+  	land.mesh.geometry.verticesNeedUpdate=true;
 
-  	sea.mesh.rotation.z += 0.005;
+  	land.mesh.rotation.z += 0.005;
   });
 }
 
@@ -334,6 +334,6 @@ module.exports = function Scene() {
   // initalize the objects
   appendLights(self);
   appendSky(self);
-  appendSea(self);
+  appendLand(self);
   appendAirplane(self);
 };
