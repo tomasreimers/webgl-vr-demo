@@ -2,6 +2,8 @@
 This project is a demonstration of how WebGL can be used to create a virtual
 reality scene for web browsers on mobile phones.
 
+*Design Inspiration from [https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/](https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/)*
+
 ## Installation
 Our project uses [NPM](https://www.npmjs.com/) as a package manager, and [Gulp](http://gulpjs.com/) as a build tool, both
 are required in order to run the app locally. In order to build our web app and
@@ -22,7 +24,21 @@ details behind it.
 
 2. FIX: Toggles ego motion on and off.
 
-3. VR: Enables stereoscopic viewing for mobile VR viewing.
+3. VR: Enables stereoscopic viewing for mobile VR viewing (**MUST HAVE PHONE LOCKED IN PORTRAIT MODE**).
+
+Additionally, tapping the screen (or pressing the button on a Google VR headset,
+will pause the animation).
+
+## Code
+
+Our code can be found in the `app/` directory. The most relevant Javascript files
+are in `app/scripts/` and are:
+
+ - `main.js`: Constructs a Scene and binds event handlers to it.
+ - `scene.js`: The bulk of our animation code, adds objects to the scene graph,
+               handles user interaction, and moves the cameras.
+ - `animation_handler.js`: Responsible for moving forward the animation loop
+ - `objects/*.js`: constructors for all the objects we put on the screen
 
 ## Authors
 (C) Fall 2016
