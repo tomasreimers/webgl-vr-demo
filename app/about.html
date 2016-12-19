@@ -89,18 +89,22 @@
         creates powerful classes such as Scenes, Renders, Cameras, Geometries,
         Materials, and Meshes. These classes abstract away some of the less
         pleasant aspects of 3D programming and allow users to focus on the
-        arrangement and physics of their scene.
+        arrangement and physics of their scene. This is similar to the CS175
+        libraries we used in class to construct the scene graph, and do
+        some of the more tedious math.
     </p>
 
     <h2>Rendering a scene in 3D</h2>
     <p>
         To create our beautiful plane flying in all its 3D glory, we create a
-        Scene object from Three.js and append it to the DOM. In the creation of
-        a scene object, we add in lights, dynamically generated clouds, a
-        randomly shifting cylindrical ground, and of course, a small propeller
-        plane. We found the low poly art style to be both appealing and
-        feasible to create purely with code. The ambient and hemisphere light
-        work to fade colors from the sky into the objects around the scene.
+        Scene graph using Three.js and render it on a canvas element on the screen.
+        In the creation of a scene object, we add in lights, dynamically generated
+        clouds (just boxes), a randomly shifting cylindrical ground (flat shaded
+        with verticies randomly raised to create bumps), and of course, a small
+        propeller plane (also made from boxes). We found the low poly art style
+        to be both appealing and feasible to create purely with code. The ambient
+        and hemisphere light work to fade colors from the sky into the objects
+        around the scene.
     </p>
     <div class="video-div">
         <video width="320" height="240" autoplay loop>
@@ -112,13 +116,14 @@
 
     <h2>Adding ego-motion using the mouse</h2>
     <p>
-        We wanted to give a dynamic interactivity to our scene. To do this, we
-        connected the javascript callback for mouse movements to our camera
-        object in the scene. When the user moves the mouse towards the edges of
-        the screen, the camera pans in ego motion in the same direction. This
+        We wanted our users to be able to look around our 3D-rendered scene. To
+        do this, we connected mouse movements around the screen to rotate the camera
+        towards that direction. When the user moves the mouse towards the edges
+        of the screen, the camera pans in ego motion in the same direction. This
         gives the user the sense of presence and exploration as the curiously
         look around the scene.
     </p>
+
     <div class="video-div">
         <video width="320" height="240" autoplay loop>
             <source src="images/plane_move_mouse.mp4" type="video/mp4">
