@@ -2,6 +2,8 @@
 This project is a demonstration of how WebGL can be used to create a virtual
 reality scene for web browsers on mobile phones.
 
+*Design Inspiration from [https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/](https://tympanus.net/codrops/2016/04/26/the-aviator-animating-basic-3d-scene-threejs/)*
+
 ## Installation
 Our project uses [NPM](https://www.npmjs.com/) as a package manager, and [Gulp](http://gulpjs.com/) as a build tool, both
 are required in order to run the app locally. In order to build our web app and
