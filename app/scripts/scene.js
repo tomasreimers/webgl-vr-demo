@@ -15,6 +15,7 @@ ninetyaroundz.setFromAxisAngle(new THREE.Vector3(0, 0, 1), - Math.PI / 2);
 
 const EYE_DISTANCE = 20;
 
+// Create three lights to position around the scene.
 function appendLights(scene) {
 	const hemisphereLight = new THREE.HemisphereLight(0xaaaaaa,0x000000, 0.9);
 
@@ -37,13 +38,14 @@ function appendLights(scene) {
 	scene.add(shadowLight);
 }
 
+// Create a flowing ground with rising and falling mountains.
 function appendLand(scene){
 	const land = new Land();
 	land.mesh.position.y = -600;
 	scene.add(land.mesh);
 
   scene.animation_handler.add(function () {
-    // move waves
+    // move ground
     // get the vertices
   	var verts = land.mesh.geometry.vertices;
   	var l = verts.length;
@@ -73,6 +75,7 @@ function appendLand(scene){
   });
 }
 
+// Create a sky to fill with clouds.
 function appendSky(scene){
 	const sky = new Sky();
 	sky.mesh.position.y = -600;
@@ -82,6 +85,7 @@ function appendSky(scene){
   });
 }
 
+// Create an airplane to soar valiently around the scene.
 function appendAirplane(scene){
 	const airplane = new AirPlane();
 	airplane.mesh.scale.set(0.25,0.25,0.25);
