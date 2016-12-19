@@ -22,7 +22,7 @@ details behind it.
 
 2. FIX: Toggles ego motion on and off.
 
-3. VR: Enables stereoscopic viewing for mobile VR viewing.
+3. VR: Enables stereoscopic viewing for mobile VR viewing (**MUST HAVE PHONE LOCKED IN PORTRAIT MODE**).
 
 Additionally, tapping the screen (or pressing the button on a Google VR headset,
 will pause the animation).
